@@ -63,7 +63,7 @@ Window {
                 id: banner
                 anchors.fill: parent
                 titlePointSize: 35
-                strTitle:"HỆ THỐNG THEO DÕI VẬT LIỆU LAZER XYZ"
+                strTitle:"HỆ THỐNG THEO DÕI VẬT LIỆU LAZER"
             }
         }
 
