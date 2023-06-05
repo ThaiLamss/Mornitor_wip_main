@@ -61,6 +61,7 @@ Rectangle {
                         color: colorHeader
                         borderColor: "black"
                         borderWidth: 1
+                        rBorderwidth: 0
                         width: frontRect.width*90/130
                         height: frontRect.height/2
                         Text {
@@ -74,9 +75,7 @@ Rectangle {
                     CustomBorderRect{
                         color: colorHeader
                         borderColor: "black"
-                        tBorderwidth:  1
-                        bBorderwidth: 1
-                        rBorderwidth: 1
+                        borderWidth: 1
                         width: frontRect.width*40/130
                         height: frontRect.height/2
                         Text {
