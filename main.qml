@@ -23,16 +23,11 @@ Window {
 
     function gridViewEdit(){
         var column = Math.min(Math.floor(view.width/minCellWidth),lineModel.rowCount())
-//        console.log(lineModel.rowCount())
         gridRows =Math.ceil(lineModel.rowCount()/column)
         gridColumns = Math.ceil(lineModel.rowCount()/gridRows)
-//        console.log(gridColumns,gridRows,column)
         view.height = gridRows*minCellHeigh
         view.cellWidth = view.width/gridColumns
         view.cellHeight = minCellHeigh
-//
-//        console.log(root.height,rectHeader.height,gridRect.height,root.height-rectHeader.height-view.height)
-        console.log(gridColumns,view.cellWidth,view.cellHeight,view.width,view.height,root.width,gridRows)
     }
 
     onWidthChanged: {
