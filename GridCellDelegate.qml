@@ -100,7 +100,7 @@ Rectangle{
             rBorderwidth: 0
             tBorderwidth: 0
             id: frontTimeRect
-            width: 90*(root.width)/refWidth
+            width: 90*(root.width)/refWidth*2
             height: root.height;
             color: "gray"
             Text {
@@ -180,10 +180,10 @@ Rectangle{
         CustomBorderRect{
             borderColor: "black"
             borderWidth: 1
-            rBorderwidth: 0
+            rBorderwidth: 1
             tBorderwidth: 0
             id: frontCountRect
-            width: 40*(root.width)/refWidth
+            width: 40*(root.width)/refWidth*2
             anchors.bottom: parent.bottom
             anchors.top: parent.top
             color: "gray"
@@ -211,6 +211,7 @@ Rectangle{
 
         }
         CustomBorderRect{
+            visible: false // ẩn đi
             borderColor: "black"
             borderWidth: 1
             rBorderwidth: 0
@@ -290,6 +291,7 @@ Rectangle{
                 }]
         }
         CustomBorderRect{
+            visible: false // ẩn đi
             borderColor: "black"
             borderWidth: 1
             tBorderwidth: 0
