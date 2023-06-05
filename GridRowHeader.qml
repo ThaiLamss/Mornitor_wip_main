@@ -34,7 +34,7 @@ Rectangle {
         CustomBorderRect{
             id: frontRect
             borderWidth: 0
-            width: 130*(root.width)/refWidth
+            width: 130*(root.width)/refWidth*2
             anchors.bottom: parent.bottom
             anchors.top: parent.top
             Column{
@@ -43,7 +43,7 @@ Rectangle {
                     color: colorHeader
                     borderColor: "black"
                     borderWidth: 1
-                    rBorderwidth: 0
+//                    rBorderwidth: 0
                     bBorderwidth: 0
                     width: frontRect.width
                     height: frontRect.height/2
@@ -76,6 +76,7 @@ Rectangle {
                         borderColor: "black"
                         tBorderwidth:  1
                         bBorderwidth: 1
+                        rBorderwidth: 1
                         width: frontRect.width*40/130
                         height: frontRect.height/2
                         Text {
@@ -90,6 +91,7 @@ Rectangle {
             }
         }
         CustomBorderRect{
+            visible: false // << Ẩn đi
             id: pbaRect
             borderWidth: 0
             width: 130*(root.width)/refWidth
