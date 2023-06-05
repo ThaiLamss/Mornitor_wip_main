@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.3
 Item {
     id: root
-    property string strTitle:"Hệ thống theo dõi vật liệu LAZER"
+    property string strTitle:"Hệ thống theo dõi vật liệu wip"
     property int titlePointSize: 35
     width: 500
     height: 300

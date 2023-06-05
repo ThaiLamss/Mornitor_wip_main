@@ -32,7 +32,7 @@ Window {
         view.cellHeight = minCellHeigh
 //
 //        console.log(root.height,rectHeader.height,gridRect.height,root.height-rectHeader.height-view.height)
-//        console.log(gridColumns,view.cellWidth,view.cellHeight,view.width,view.height,root.width,gridRows)
+        console.log(gridColumns,view.cellWidth,view.cellHeight,view.width,view.height,root.width,gridRows)
     }
 
     onWidthChanged: {
@@ -63,7 +63,7 @@ Window {
                 id: banner
                 anchors.fill: parent
                 titlePointSize: 35
-                strTitle:"HỆ THỐNG THEO DÕI VẬT LIỆU LAZER"
+                strTitle:"HỆ THỐNG THEO DÕI VẬT LIỆU KHO WIP"
             }
         }
 

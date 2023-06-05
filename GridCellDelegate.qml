@@ -37,7 +37,7 @@ Rectangle{
 
         if(completed && width>refWidth)
         {
-            textPointSize = Math.round(frontTimeRect.width/12)
+            textPointSize = Math.round(frontTimeRect.width/6)
         }
     }
     Component.onCompleted: {
@@ -45,7 +45,7 @@ Rectangle{
         timer.interval = 300
         timer.repeat = false
         timer.triggered.connect(function(){
-            textPointSize = Math.round(frontTimeRect.width/12)
+            textPointSize = Math.round(frontTimeRect.width/6)
             completed = true;
             timer.destroy();
         })
@@ -100,7 +100,7 @@ Rectangle{
             rBorderwidth: 0
             tBorderwidth: 0
             id: frontTimeRect
-            width: 180*(root.width)/refWidth
+            width: 90*(root.width)/refWidth
             height: root.height;
             color: "gray"
             Text {
@@ -183,7 +183,7 @@ Rectangle{
             rBorderwidth: 0
             tBorderwidth: 0
             id: frontCountRect
-            width: 2*40*(root.width)/refWidth
+            width: 40*(root.width)/refWidth
             anchors.bottom: parent.bottom
             anchors.top: parent.top
             color: "gray"
@@ -210,116 +210,116 @@ Rectangle{
 
 
         }
-//        CustomBorderRect{
-//            borderColor: "black"
-//            borderWidth: 1
-//            rBorderwidth: 0
-//            tBorderwidth: 0
-//            id: pbaTimeRect
-//            width: 90*(root.width)/refWidth
-//            height: root.height;
-//            color: "gray"
-//            Text {
-//                id: pbaTimeText
-//                text: mtimePBA
-//                font.pointSize: textPointSize
-//                anchors.fill: parent
-//                horizontalAlignment: Text.AlignHCenter
-//                verticalAlignment: Text.AlignVCenter
-//            }
-//            MouseArea{
-//                enabled: root.active
-//                anchors.fill: parent
-//                onClicked: {
-//                    root.msgTxt ="Bạn có muốn đặt lại thời gian của line " +root.line
-//                    var dlg = msgDialog.createObject(root)
-//                    dlg.accepted.connect(function(){
-//                        resetTimePba()
-//                    })
-//                    dlg.visible = true
-//                }
-//            }
-//            states:[
-//                State {
-//                    name: "PBA not connect"
-//                    when: statePBA === 0 || active ===false
-//                    PropertyChanges {
-//                        target: pbaTimeRect
-//                        color: "gray"
-//                    }
-//                    PropertyChanges {
-//                        target: pbaCountRect
-//                        color: "gray"
-//                    }
-//                },
-//                State {
-//                    name: "PBA calling"
-//                    when: statePBA === 1
-//                    PropertyChanges {
-//                        target: pbaTimeRect
-//                        color: "yellow"
-//                    }
-//                    PropertyChanges {
-//                        target: pbaCountRect
-//                        color: "yellow"
-//                    }
-//                },
-//                State {
-//                    name: "PBA AGV"
-//                    when: statePBA === 2
-//                    PropertyChanges {
-//                        target: pbaTimeRect
-//                        color: "purple"
-//                    }
-//                    PropertyChanges {
-//                        target: pbaCountRect
-//                        color: "purple"
-//                    }
-//                },
-//                State {
-//                    name: "PBA FullBox"
-//                    when: statePBA === 3
-//                    PropertyChanges {
-//                        target: pbaTimeRect
-//                        color: "green"
-//                    }
-//                    PropertyChanges {
-//                        target: pbaCountRect
-//                        color: "green"
-//                    }
-//                }]
-//        }
-//        CustomBorderRect{
-//            borderColor: "black"
-//            borderWidth: 1
-//            tBorderwidth: 0
-//            //            rBorderwidth: 0
-//            id: pbaCountRect
-//            width: 40*(root.width)/refWidth
-//            anchors.bottom: parent.bottom
-//            anchors.top: parent.top
-//            color: "gray"
-//            Text {
-//                id: pbaTimeCount
-//                text: countPBA
-//                font.pointSize: textPointSize
-//                anchors.fill: parent
-//                horizontalAlignment: Text.AlignHCenter
-//                verticalAlignment: Text.AlignVCenter
-//            }
-//            MouseArea{
-//                enabled: root.active
-//                anchors.fill: parent
-//                onClicked: {
-//                    root.msgTxt ="Bạn có muốn đặt lại số lượt của line " +root.line
-//                    var dlg = msgDialog.createObject(root)
-//                    dlg.accepted.connect(function(){
-//                        resetCountPba()
-//                    })
-//                    dlg.visible = true
-//                }
-//            }
-//        }
+        CustomBorderRect{
+            borderColor: "black"
+            borderWidth: 1
+            rBorderwidth: 0
+            tBorderwidth: 0
+            id: pbaTimeRect
+            width: 90*(root.width)/refWidth
+            height: root.height;
+            color: "gray"
+            Text {
+                id: pbaTimeText
+                text: mtimePBA
+                font.pointSize: textPointSize
+                anchors.fill: parent
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
+            MouseArea{
+                enabled: root.active
+                anchors.fill: parent
+                onClicked: {
+                    root.msgTxt ="Bạn có muốn đặt lại thời gian của line " +root.line
+                    var dlg = msgDialog.createObject(root)
+                    dlg.accepted.connect(function(){
+                        resetTimePba()
+                    })
+                    dlg.visible = true
+                }
+            }
+            states:[
+                State {
+                    name: "PBA not connect"
+                    when: statePBA === 0 || active ===false
+                    PropertyChanges {
+                        target: pbaTimeRect
+                        color: "gray"
+                    }
+                    PropertyChanges {
+                        target: pbaCountRect
+                        color: "gray"
+                    }
+                },
+                State {
+                    name: "PBA calling"
+                    when: statePBA === 1
+                    PropertyChanges {
+                        target: pbaTimeRect
+                        color: "yellow"
+                    }
+                    PropertyChanges {
+                        target: pbaCountRect
+                        color: "yellow"
+                    }
+                },
+                State {
+                    name: "PBA AGV"
+                    when: statePBA === 2
+                    PropertyChanges {
+                        target: pbaTimeRect
+                        color: "purple"
+                    }
+                    PropertyChanges {
+                        target: pbaCountRect
+                        color: "purple"
+                    }
+                },
+                State {
+                    name: "PBA FullBox"
+                    when: statePBA === 3
+                    PropertyChanges {
+                        target: pbaTimeRect
+                        color: "green"
+                    }
+                    PropertyChanges {
+                        target: pbaCountRect
+                        color: "green"
+                    }
+                }]
+        }
+        CustomBorderRect{
+            borderColor: "black"
+            borderWidth: 1
+            tBorderwidth: 0
+            //            rBorderwidth: 0
+            id: pbaCountRect
+            width: 40*(root.width)/refWidth
+            anchors.bottom: parent.bottom
+            anchors.top: parent.top
+            color: "gray"
+            Text {
+                id: pbaTimeCount
+                text: countPBA
+                font.pointSize: textPointSize
+                anchors.fill: parent
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
+            MouseArea{
+                enabled: root.active
+                anchors.fill: parent
+                onClicked: {
+                    root.msgTxt ="Bạn có muốn đặt lại số lượt của line " +root.line
+                    var dlg = msgDialog.createObject(root)
+                    dlg.accepted.connect(function(){
+                        resetCountPba()
+                    })
+                    dlg.visible = true
+                }
+            }
+        }
     }
 
 
