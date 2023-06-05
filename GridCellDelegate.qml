@@ -37,7 +37,7 @@ Rectangle{
 
         if(completed && width>refWidth)
         {
-            textPointSize = Math.round(frontTimeRect.width/6)
+            textPointSize = Math.round(frontTimeRect.width/6)/2
         }
     }
     Component.onCompleted: {
@@ -45,7 +45,7 @@ Rectangle{
         timer.interval = 300
         timer.repeat = false
         timer.triggered.connect(function(){
-            textPointSize = Math.round(frontTimeRect.width/6)
+            textPointSize = Math.round(frontTimeRect.width/6)/2
             completed = true;
             timer.destroy();
         })
