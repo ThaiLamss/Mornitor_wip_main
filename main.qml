@@ -201,7 +201,13 @@ Window {
         }
     }
 
-
+    PopupLineInformation
+    {
+        id:popupLineInformation
+        anchors.centerIn: parent
+        width: parent.width*2/3
+        height: parent.height*2/3
+    }
 
 
 

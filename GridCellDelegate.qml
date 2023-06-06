@@ -79,19 +79,24 @@ Rectangle{
             }
             MouseArea{
                 anchors.fill: parent
-                onClicked: {
-                    root.msgTxt ="bạn có muốn thay đổi trạng thái của line " +root.line
-                    var dlg = msgDialog.createObject(root)
-                    dlg.accepted.connect(function(){
-                        setActive(!active)
-                    })
-                    dlg.rejected.connect(function(){
+                acceptedButtons: Qt.RightButton | Qt.LeftButton
+                onClicked:
+                    if(mouse.button===Qt.RightButton){
+                        root.msgTxt ="bạn có muốn thay đổi trạng thái của line " +root.line
+                        var dlg = msgDialog.createObject(root)
+                        dlg.accepted.connect(function(){
+                            setActive(!active)
+                        })
+                        dlg.rejected.connect(function(){
 
-                    })
-                    dlg.visible = true
-                }
+                        })
+                        dlg.visible = true
+                    }
+                    else if(mouse.button===Qt.LeftButton)
+                    {
+                        popupLineInformation.show(root.line)
+                    }
             }
-
         }
 
         CustomBorderRect{
@@ -114,15 +119,20 @@ Rectangle{
             MouseArea{
                 anchors.fill: parent
                 enabled: root.active
-                onClicked: {
-                    root.msgTxt ="Bạn có muốn đặt lại thời gian của line " +root.line
-                    var dlg = msgDialog.createObject(root)
-                    dlg.accepted.connect(function(){
-                        resetTimeFront()
-                    })
-                    dlg.visible = true
-                }
-
+                acceptedButtons: Qt.RightButton | Qt.LeftButton
+                onClicked:
+                    if(mouse.button===Qt.LeftButton){
+                        root.msgTxt ="Bạn có muốn đặt lại thời gian của line " +root.line
+                        var dlg = msgDialog.createObject(root)
+                        dlg.accepted.connect(function(){
+                            resetTimeFront()
+                        })
+                        dlg.visible = true
+                    }
+                    else if(mouse.button===Qt.RightButton)
+                    {
+                        popupLineInformation.show(root.line)
+                    }
             }
 
             states:[
@@ -198,13 +208,23 @@ Rectangle{
             MouseArea{
                 anchors.fill: parent
                 enabled: root.active
-                onClicked: {
-                    root.msgTxt ="Bạn có muốn đặt lại số lượt của line " +root.line
-                    var dlg = msgDialog.createObject(root)
-                    dlg.accepted.connect(function(){
-                        resetCountFront()
-                    })
-                    dlg.visible = true
+                acceptedButtons: Qt.RightButton | Qt.LeftButton
+                onClicked:
+                {
+                    console.log(mouse.button)
+                    if(mouse.button===Qt.LeftButton){
+                        console.log("Right")
+                        root.msgTxt ="Bạn có muốn đặt lại số lượt của line " +root.line
+                        var dlg = msgDialog.createObject(root)
+                        dlg.accepted.connect(function(){
+                            resetCountFront()
+                        })
+                        dlg.visible = true
+                    }
+                    else if(mouse.button===Qt.RightButton)
+                    {
+                        popupLineInformation.show(root.line)
+                    }
                 }
             }
 

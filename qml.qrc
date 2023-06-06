@@ -5,5 +5,6 @@
         <file>CustomBorderRect.qml</file>
         <file>GridRowHeader.qml</file>
         <file>Banner.qml</file>
+        <file>PopupLineInformation.qml</file>
     </qresource>
 </RCC>
