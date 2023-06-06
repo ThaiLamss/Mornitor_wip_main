@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
 import QtQuick.VirtualKeyboard 2.3
-
+import QtQuick.Layouts 1.12
 Popup {
 
     id: root
@@ -16,6 +16,7 @@ Popup {
     }
 
     property int lineID:0
+    property string timeSupply: "value"
     Rectangle
     {
         id: popupRect
@@ -40,6 +41,45 @@ Popup {
                     anchors.centerIn: parent
                     wrapMode: Text.WordWrap
                     font.pointSize: parent.height*2/3
+                }
+            }
+            Row{
+                id: row1
+                width: rectLine.width
+                spacing: width-displayTimeSupple.width-rectSupply.width
+                Rectangle{
+                    id: rectSupply
+                    color: "orange"
+                    height: popupRect.height/5
+                    width: (row1.width)*1.9/3
+                    radius: 10
+                    Text {
+                        color: "white"
+                        text: "Cần cung cấp vật liệu"
+                        anchors.centerIn: parent
+                        wrapMode: Text.WordWrap
+                        font.pointSize: parent.height/4
+                    }
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log(row1.width)
+                        }
+                    }
+                }
+
+                Rectangle{
+                    id: displayTimeSupple
+                    border.color: "yellow"
+                    radius: 10
+                    height: popupRect.height/5
+                    width: rectLine.width*0.9/3
+                    Text {
+                        text: timeSupply
+                        anchors.centerIn: parent
+                        wrapMode: Text.WordWrap
+                        font.pointSize: parent.height/4
+                    }
                 }
             }
         }
