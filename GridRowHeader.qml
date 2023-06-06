@@ -48,7 +48,7 @@ Rectangle {
                     width: frontRect.width
                     height: frontRect.height/2
                     Text {
-                        text: "Front"
+                        text: "Back Glass"
                         anchors.fill: parent
                         font.pointSize: 15
                         horizontalAlignment: Text.AlignHCenter

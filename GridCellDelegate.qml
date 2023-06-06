@@ -94,7 +94,7 @@ Rectangle{
                     }
                     else if(mouse.button===Qt.LeftButton)
                     {
-                        popupLineInformation.show(root.line)
+                        popupLineInformation.show(index)
                     }
             }
         }
@@ -131,7 +131,7 @@ Rectangle{
                     }
                     else if(mouse.button===Qt.RightButton)
                     {
-                        popupLineInformation.show(root.line)
+                        popupLineInformation.show(index)
                     }
             }
 
@@ -223,7 +223,7 @@ Rectangle{
                     }
                     else if(mouse.button===Qt.RightButton)
                     {
-                        popupLineInformation.show(root.line)
+                        popupLineInformation.show(index)
                     }
                 }
             }

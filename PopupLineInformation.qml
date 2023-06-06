@@ -9,16 +9,28 @@ Popup {
     modal: true
     focus: true
     closePolicy: Popup.CloseOnEscape|Popup.CloseOnPressOutside
-    function show(line)
+    function show(index)
     {
-        lineID = line
+        lineIndex = index
+        lineID = lineModel.get(index,"mLineID")
+        updateData()
         visible =true;
     }
+    function updateData()
+    {
+        if(lineIndex <0 || lineModel.get(lineIndex,"mActive")===false)
+        {
+            curState=-1
+            return
+        }
+        curState = lineModel.get(lineIndex,"mStateFront")
+        timeCounter = lineModel.get(lineIndex,"mTimeFront")
+    }
 
+    property int lineIndex: -1
     property int lineID:0
-    property string timeSupply: "value"
-    property string timeFull: "value"
-    property string timeAgv: "value"
+    property int curState: -1
+    property string timeCounter: "value"
     Rectangle
     {
         id: popupRect
@@ -48,7 +60,7 @@ Popup {
             Row{
                 id: row1
                 width: rectLine.width
-                spacing: width-displayTimeSupply.width-rectSupply.width
+                spacing: width-displaytimeSupply.width-rectSupply.width
                 Rectangle{
                     id: rectSupply
                     color: "orange"
@@ -65,19 +77,20 @@ Popup {
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
-                            console.log(row1.width)
+
                         }
                     }
                 }
 
                 Rectangle{
-                    id: displayTimeSupply
+                    id: displaytimeSupply
                     border.color: "yellow"
                     radius: 10
                     height: popupRect.height/5
                     width: rectLine.width*0.9/3
                     Text {
-                        text: timeSupply
+                        id: txtTimeSupply
+                        text: timeCounter
                         anchors.centerIn: parent
                         wrapMode: Text.WordWrap
                         font.pointSize: parent.height/4
@@ -87,7 +100,7 @@ Popup {
             Row{
                 id: row2
                 width: rectLine.width
-                spacing: width-displayTimeFull.width-rectFull.width
+                spacing: width-displaytimeFull.width-rectFull.width
                 Rectangle{
                     id: rectFull
                     color: "green"
@@ -110,13 +123,14 @@ Popup {
                 }
 
                 Rectangle{
-                    id: displayTimeFull
+                    id: displaytimeFull
                     border.color: "Green"
                     radius: 10
                     height: popupRect.height/5
                     width: rectLine.width*0.9/3
                     Text {
-                        text: timeFull
+                        id: txtTimeFull
+                        text: timeCounter
                         anchors.centerIn: parent
                         wrapMode: Text.WordWrap
                         font.pointSize: parent.height/4
@@ -143,7 +157,6 @@ Popup {
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
-                            console.log(row3.width)
                         }
                     }
                 }
@@ -155,13 +168,167 @@ Popup {
                     height: popupRect.height/5
                     width: rectLine.width*0.9/3
                     Text {
-                        text: timeAgv
+                        id: txtTimeAgv
+                        text: timeCounter
                         anchors.centerIn: parent
                         wrapMode: Text.WordWrap
                         font.pointSize: parent.height/4
                     }
                 }
+
             }
+
+
+            states: [
+                State {
+                    id: stateUnActive
+                    name: "UnActive"
+                    when: curState === -1
+                    PropertyChanges {
+                        target: txtTimeSupply
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: displaytimeSupply
+                        color: "gray"
+                    }
+                    PropertyChanges {
+                        target: txtTimeFull
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: displaytimeFull
+                        color: "gray"
+                    }
+                    PropertyChanges {
+                        target: txtTimeAgv
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: displayTimeAgv
+                        color: "gray"
+                    }
+                },
+                State {
+                    id: stateIdle
+                    name: "Idle"
+                    when: curState == 0
+                    PropertyChanges {
+                        target: txtTimeSupply
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: displaytimeSupply
+                        color: "gray"
+                    }
+                    PropertyChanges {
+                        target: txtTimeFull
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: displaytimeFull
+                        color: "gray"
+                    }
+                    PropertyChanges {
+                        target: txtTimeAgv
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: displayTimeAgv
+                        color: "gray"
+                    }
+                },
+                State {
+                    id: stateWaitSupply
+                    name: "waitSupply"
+                    when: curState == 1
+                    PropertyChanges {
+                        target: txtTimeSupply
+                        visible: true
+                        color:"white"
+                    }
+                    PropertyChanges {
+                        target: displaytimeSupply
+                        color: "orange"
+                    }
+                    PropertyChanges {
+                        target: txtTimeFull
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: displaytimeFull
+                        color: "gray"
+                    }
+                    PropertyChanges {
+                        target: txtTimeAgv
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: displayTimeAgv
+                        color: "gray"
+                    }
+                },
+                State {
+                    id: stateAgvRun
+                    name: "agvRun"
+                    when: curState == 2
+                    PropertyChanges {
+                        target: txtTimeSupply
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: displaytimeSupply
+                        color: "gray"
+                    }
+                    PropertyChanges {
+                        target: txtTimeFull
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: displaytimeFull
+                        color: "gray"
+                    }
+                    PropertyChanges {
+                        target: txtTimeAgv
+                        visible: true
+                        color:"white"
+                    }
+                    PropertyChanges {
+                        target: displayTimeAgv
+                        color: "purple"
+                    }
+                },
+                State {
+                    id: stateFull
+                    name: "full"
+                    when: curState == 3
+                    PropertyChanges {
+                        target: txtTimeSupply
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: displaytimeSupply
+                        color: "gray"
+                    }
+                    PropertyChanges {
+                        target: txtTimeFull
+                        visible: true
+                        color:"white"
+                    }
+                    PropertyChanges {
+                        target: displaytimeFull
+                        color: "green"
+                    }
+                    PropertyChanges {
+                        target: txtTimeAgv
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: displayTimeAgv
+                        color: "gray"
+                    }
+                }
+            ]
         }
 
     }

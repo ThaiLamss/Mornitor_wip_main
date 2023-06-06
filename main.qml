@@ -9,6 +9,7 @@ Window {
     id:root
     width: 1894
     height: 1280
+    title: "Mornitor Back Glass"
     property int gridColumns
     property int gridRows: 3
     property real minCellWidth: 400
@@ -43,6 +44,7 @@ Window {
         running: true
         interval: 250
         property int count: 0
+        onTriggered: popupLineInformation.updateData()
     }
 
     ColumnLayout{

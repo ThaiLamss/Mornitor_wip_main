@@ -55,6 +55,7 @@ public:
     Q_INVOKABLE void resetCountPba(int mindex);
     Q_INVOKABLE void clearCount();
     Q_INVOKABLE void checkLineIsConnected();
+    Q_INVOKABLE QVariant get(int index, const QByteArray &rolename);
 
 signals:
 

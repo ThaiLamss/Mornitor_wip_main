@@ -142,6 +142,15 @@ void LineModel::checkLineIsConnected()
     }
 }
 
+QVariant LineModel::get(int row,const QByteArray &rolename)
+{
+    int role = roleNames().key(rolename,-1);
+
+    if (role==-1 || row < 0 || row >= rowCount())
+            return QVariant();
+    return data(index(row),role);
+}
+
 int LineModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
